@@ -23,6 +23,10 @@ namespace Mantle.API.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Get Weather Forecast
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
