@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mantle.Repository.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mantle.Repository.Database
 {
-    public class MantleDbContext : DbContext
+    public class MantleDbContext : DbContext, IMantleDbContext
     {
         public MantleDbContext(DbContextOptions options) : base(options)
         {
