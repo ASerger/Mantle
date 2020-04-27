@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Mantle.Loot\Mantle.Loot.csproj" />
     <ProjectReference Include="..\Mantle.Repository\Mantle.Repository.csproj" />
   </ItemGroup>
 
