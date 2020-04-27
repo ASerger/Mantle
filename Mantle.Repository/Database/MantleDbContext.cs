@@ -14,8 +14,11 @@ namespace Mantle.Repository.Database
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            mb.Entity<EffectClass>().HasKey(i => i.Id);
-            mb.Entity<EffectClass>().Property("EffectName").HasColumnType("varchar(20)");
+            mb.Entity<EffectClass>(ec =>
+            {
+                ec.HasKey(i => i.Id);
+                ec.Property("EffectName").HasColumnType("varchar(20)");
+            });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
