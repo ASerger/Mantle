@@ -37,9 +37,8 @@ namespace Mantle.API
             {
                 swag.SwaggerDoc("v1", info: new OpenApiInfo { Title = "Mantle", Version = "V1" });
                 // Set the comments path for the Swagger JSON and UI.
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                swag.IncludeXmlComments(xmlPath);
+
+                swag.IncludeXmlComments(GetSwaggerXmlPath());
             });
         }
 
@@ -67,6 +66,12 @@ namespace Mantle.API
             {
                 endpoints.MapControllers();
             });
+        }
+
+        internal string GetSwaggerXmlPath()
+        {
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            return Path.Combine(AppContext.BaseDirectory, xmlFile);
         }
     }
 }
