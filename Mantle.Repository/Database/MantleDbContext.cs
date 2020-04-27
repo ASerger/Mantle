@@ -1,4 +1,5 @@
-﻿using Mantle.Repository.Contracts;
+﻿using Mantle.DataModels.Models;
+using Mantle.Repository.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Mantle.Repository.Database
@@ -9,8 +10,12 @@ namespace Mantle.Repository.Database
         {
         }
 
+        public virtual DbSet<EffectClass> EffectClass { get; set; }
+
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            mb.Entity<EffectClass>().HasKey(i => i.Id);
+            mb.Entity<EffectClass>().Property("EffectName").HasColumnType("varchar(20)");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

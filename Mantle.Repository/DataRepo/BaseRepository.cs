@@ -1,8 +1,9 @@
 ﻿using Mantle.Repository.Contracts;
+using Mantle.Repository.Database;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Mantle.Repository.Database
+namespace Mantle.Repository.DataRepo
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
@@ -18,6 +19,11 @@ namespace Mantle.Repository.Database
             return _db.Set<T>().ToList();
         }
 
+        public T GetById(int id)
+        {
+            return _db.Find<T>(id);
+        }
+
         public void InsertRecord(T record)
         {
             _db.Add(record);
@@ -29,6 +35,8 @@ namespace Mantle.Repository.Database
             _db.AddRange(records);
             _db.SaveChangesAsync();
         }
+
+
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls

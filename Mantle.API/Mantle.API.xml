@@ -4,6 +4,23 @@
         <name>Mantle.API</name>
     </assembly>
     <members>
+        <member name="T:Mantle.API.Controllers.EffectClassController">
+            <summary>
+            Template controller round 1
+            </summary>
+        </member>
+        <member name="M:Mantle.API.Controllers.EffectClassController.Get">
+            <summary>
+            Retrieve all effects from DB
+            </summary>
+        </member>
+        <member name="M:Mantle.API.Controllers.EffectClassController.Get(System.Int32)">
+            <summary>
+            Retrive a single record from the EffectClass table
+            </summary>
+            <param name="id">[required] Primary Key</param>
+            <returns></returns>
+        </member>
         <member name="M:Mantle.API.Controllers.WeatherForecastController.Get">
             <summary>
             Get Weather Forecast

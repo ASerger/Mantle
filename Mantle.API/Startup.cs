@@ -34,6 +34,8 @@ namespace Mantle.API
 
                 swag.IncludeXmlComments(GetSwaggerXmlPath());
             });
+            Mantle.API.Bootstrap.AddDependencies(services);
+            Mantle.Loot.Bootstrap.AddDependencies(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
