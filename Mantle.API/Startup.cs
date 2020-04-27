@@ -28,7 +28,6 @@ namespace Mantle.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddLogging();
             services.AddDbContext<MantleDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:MantleDb"]));
         }
 
