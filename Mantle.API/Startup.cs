@@ -25,7 +25,10 @@ namespace Mantle.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<MantleDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:MantleDb"]));
+            services.AddDbContext<MantleDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration["ConnectionStrings:MantleDb"]);
+            });
 
             services.AddSwaggerGen(swag =>
             {

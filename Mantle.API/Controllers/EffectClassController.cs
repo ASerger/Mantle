@@ -33,7 +33,7 @@ namespace Mantle.API.Controllers
         [Route("")]
         public async Task<IEnumerable<EffectClass>> Get()
         {
-            return await _effectClassLoot.GetAll();
+            return await _effectClassLoot.GetAllAsync();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Mantle.API.Controllers
         public async Task<IActionResult> Get(int id = 0)
         {
             if (id == 0) return BadRequest();
-            var data = await _effectClassLoot.GetById(id);
+            var data = await _effectClassLoot.GetByIdAsync(id);
 
             // OK(null) produces a 204 no content result which is good
             return Ok(data);
