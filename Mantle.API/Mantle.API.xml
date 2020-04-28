@@ -21,11 +21,5 @@
             <param name="id">[required] Primary Key</param>
             <returns></returns>
         </member>
-        <member name="M:Mantle.API.Controllers.WeatherForecastController.Get">
-            <summary>
-            Get Weather Forecast
-            </summary>
-            <returns></returns>
-        </member>
     </members>
 </doc>

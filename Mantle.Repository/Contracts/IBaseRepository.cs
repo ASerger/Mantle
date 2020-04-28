@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Mantle.Repository.Contracts
 {
     public interface IBaseRepository<T> : IDisposable where T : class
     {
-        IEnumerable<T> GetAll();
-        T GetById(int id);
-        void InsertRecord(T record);
-        void InsertRecords(IEnumerable<T> records);
+        Task<IEnumerable<T>> GetAll();
+        Task<T> GetById(int id);
+        Task<int> InsertRecord(T record);
+        Task<int> InsertRecords(IEnumerable<T> records);
     }
 }

@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Mantle.Loot.Contracts
 {
     public interface IEffectClassLoot
     {
-        EffectClass GetById(int id);
-        IEnumerable<EffectClass> GetAll();
+        Task<EffectClass> GetById(int id);
+        Task<IEnumerable<EffectClass>> GetAll();
     }
 }

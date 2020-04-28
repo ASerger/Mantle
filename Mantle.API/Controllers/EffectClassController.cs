@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Mantle.API.Controllers
 {
@@ -30,9 +31,9 @@ namespace Mantle.API.Controllers
         /// </summary>
         [HttpGet]
         [Route("")]
-        public IEnumerable<EffectClass> Get()
+        public async Task<IEnumerable<EffectClass>> Get()
         {
-            return _effectClassLoot.GetAll();
+            return await _effectClassLoot.GetAll();
         }
 
         /// <summary>
@@ -42,10 +43,12 @@ namespace Mantle.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
-        public IActionResult Get(int id = 0)
+        public async Task<IActionResult> Get(int id = 0)
         {
             if (id == 0) return BadRequest();
-            var data = _effectClassLoot.GetById(id);
+            var data = await _effectClassLoot.GetById(id);
+
+            // OK(null) produces a 204 no content result which is good
             return Ok(data);
         }
     }
