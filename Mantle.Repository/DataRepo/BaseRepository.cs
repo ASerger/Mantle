@@ -1,7 +1,9 @@
 ﻿using Mantle.Repository.Contracts;
 using Mantle.Repository.Database;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Mantle.Repository.DataRepo
 {
@@ -14,26 +16,26 @@ namespace Mantle.Repository.DataRepo
             _db = db;
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
-            return _db.Set<T>().ToList();
+            return await _db.Set<T>().ToListAsync();
         }
 
-        public T GetById(int id)
+        public async Task<T> GetById(int id)
         {
-            return _db.Find<T>(id);
+            return await _db.FindAsync<T>(id);
         }
 
-        public void InsertRecord(T record)
+        public async Task<int> InsertRecord(T record)
         {
             _db.Add(record);
-            _db.SaveChangesAsync();
+            return await _db.SaveChangesAsync();
         }
 
-        public void InsertRecords(IEnumerable<T> records)
+        public async Task<int> InsertRecords(IEnumerable<T> records)
         {
             _db.AddRange(records);
-            _db.SaveChangesAsync();
+            return await _db.SaveChangesAsync();
         }
 
 

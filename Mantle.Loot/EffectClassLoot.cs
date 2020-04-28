@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Mantle.Loot
 {
@@ -20,14 +21,14 @@ namespace Mantle.Loot
             _logger = logger;
         }
 
-        public IEnumerable<EffectClass> GetAll()
+        public async Task<IEnumerable<EffectClass>> GetAll()
         {
-            return _effectClassRepo.GetAll();
+            return await _effectClassRepo.GetAll();
         }
 
-        public EffectClass GetById(int id)
+        public async Task<EffectClass> GetById(int id)
         {
-            return _effectClassRepo.GetById(id);
+            return await _effectClassRepo.GetById(id);
         }
     }
 }
