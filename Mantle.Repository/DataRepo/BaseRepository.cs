@@ -16,23 +16,33 @@ namespace Mantle.Repository.DataRepo
             _db = db;
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _db.Set<T>().ToListAsync();
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<IEnumerable<T>> GetAllReadOnlyAsync()
+        {
+            return await _db.Set<T>().AsNoTracking().ToListAsync();
+        }
+
+        public async Task<T> GetByIdAsync(int id)
         {
             return await _db.FindAsync<T>(id);
         }
 
-        public async Task<int> InsertRecord(T record)
+        public async Task<T> GetByIdReadOnlyAsync(int id)
+        {
+            return await _db.FindAsync<T>(id);
+        }
+
+        public async Task<int> InsertRecordAsync(T record)
         {
             _db.Add(record);
             return await _db.SaveChangesAsync();
         }
 
-        public async Task<int> InsertRecords(IEnumerable<T> records)
+        public async Task<int> InsertRecordsAsync(IEnumerable<T> records)
         {
             _db.AddRange(records);
             return await _db.SaveChangesAsync();

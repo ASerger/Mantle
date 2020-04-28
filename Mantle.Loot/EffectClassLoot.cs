@@ -21,14 +21,14 @@ namespace Mantle.Loot
             _logger = logger;
         }
 
-        public async Task<IEnumerable<EffectClass>> GetAll()
+        public async Task<IEnumerable<EffectClass>> GetAllAsync()
         {
-            return await _effectClassRepo.GetAll();
+            return await _effectClassRepo.GetAllReadOnlyAsync();
         }
 
-        public async Task<EffectClass> GetById(int id)
+        public async Task<EffectClass> GetByIdAsync(int id)
         {
-            return await _effectClassRepo.GetById(id);
+            return await _effectClassRepo.GetByIdReadOnlyAsync(id);
         }
     }
 }

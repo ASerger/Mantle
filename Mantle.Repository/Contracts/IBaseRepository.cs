@@ -6,9 +6,11 @@ namespace Mantle.Repository.Contracts
 {
     public interface IBaseRepository<T> : IDisposable where T : class
     {
-        Task<IEnumerable<T>> GetAll();
-        Task<T> GetById(int id);
-        Task<int> InsertRecord(T record);
-        Task<int> InsertRecords(IEnumerable<T> records);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllReadOnlyAsync();
+        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdReadOnlyAsync(int id);
+        Task<int> InsertRecordAsync(T record);
+        Task<int> InsertRecordsAsync(IEnumerable<T> records);
     }
 }
