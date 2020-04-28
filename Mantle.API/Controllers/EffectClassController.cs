@@ -12,7 +12,7 @@ namespace Mantle.API.Controllers
     /// Template controller round 1
     /// </summary>
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class EffectClassController : ControllerBase
     {
         private IEffectClassLoot _effectClassLoot;
