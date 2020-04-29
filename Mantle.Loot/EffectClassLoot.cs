@@ -2,9 +2,7 @@
 using Mantle.Loot.Contracts;
 using Mantle.Repository.Contracts;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Mantle.Loot

@@ -1,6 +1,5 @@
-﻿using Mantle.DataModels.Models;
+﻿using Mantle.Loot;
 using Microsoft.Extensions.DependencyInjection;
-using Mantle.Loot;
 
 namespace Mantle.API
 {
