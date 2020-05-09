@@ -1,7 +1,7 @@
 ﻿using Mantle.DataModels.Models;
-using Microsoft.Extensions.DependencyInjection;
 using Mantle.Repository.Contracts;
 using Mantle.Repository.DataRepo;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Mantle.Loot
 {
@@ -9,7 +9,7 @@ namespace Mantle.Loot
     {
         public static void AddDependencies(IServiceCollection services)
         {
-            services.AddScoped<IEffectClassRepo<EffectClass>, EffectClassRepo<EffectClass>>();
+            services.AddScoped<IEffectClassRepo<EffectClass>, EffectClassRepository<EffectClass>>();
         }
     }
 }

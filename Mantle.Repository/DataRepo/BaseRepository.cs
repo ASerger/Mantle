@@ -2,7 +2,6 @@
 using Mantle.Repository.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Mantle.Repository.DataRepo
