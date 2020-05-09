@@ -34,7 +34,7 @@ namespace Mantle.API.Controllers
         [HttpGet]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<EffectClass>))]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<IEnumerable<EffectClass>> Get()
         {
             return await _effectClassLoot.GetAllAsync();
@@ -47,7 +47,8 @@ namespace Mantle.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
-        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EffectClass))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Get(int id = 0)
         {
             if (id == 0) return BadRequest();
