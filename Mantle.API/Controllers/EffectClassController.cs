@@ -1,5 +1,6 @@
 ﻿using Mantle.DataModels.Models;
 using Mantle.Loot.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Mantle.API.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class EffectClassController : ControllerBase
     {
         private IEffectClassLoot _effectClassLoot;
@@ -29,6 +31,7 @@ namespace Mantle.API.Controllers
         /// </summary>
         [HttpGet]
         [Route("")]
+        [AllowAnonymous]
         public async Task<IEnumerable<EffectClass>> Get()
         {
             return await _effectClassLoot.GetAllAsync();

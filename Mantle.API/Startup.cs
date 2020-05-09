@@ -30,6 +30,14 @@ namespace Mantle.API
                 options.UseSqlServer(Configuration["ConnectionStrings:MantleDb"]);
             });
 
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "https://localhost:5001/";
+                    options.RequireHttpsMetadata = false;
+                    options.Audience = "Mantle.API";
+                });
+
             services.AddSwaggerGen(swag =>
             {
                 swag.SwaggerDoc("v1", info: new OpenApiInfo { Title = "Mantle", Version = "V1" });
@@ -53,6 +61,7 @@ namespace Mantle.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwagger();
