@@ -1,6 +1,7 @@
 ﻿using Mantle.DataModels.Models;
 using Mantle.Loot.Contracts;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Mantle.API.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize]
+    [Produces("application/json")]
     public class EffectClassController : ControllerBase
     {
         private IEffectClassLoot _effectClassLoot;
@@ -31,6 +33,7 @@ namespace Mantle.API.Controllers
         /// </summary>
         [HttpGet]
         [Route("")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<EffectClass>))]
         [AllowAnonymous]
         public async Task<IEnumerable<EffectClass>> Get()
         {
@@ -44,6 +47,7 @@ namespace Mantle.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
+        [Produces("application/json")]
         public async Task<IActionResult> Get(int id = 0)
         {
             if (id == 0) return BadRequest();
