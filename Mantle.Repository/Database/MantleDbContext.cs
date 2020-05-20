@@ -11,6 +11,7 @@ namespace Mantle.Repository.Database
         }
 
         public virtual DbSet<EffectClass> EffectClass { get; set; }
+        public virtual DbSet<WeaponClass> WeaponClass { get; set; }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
