@@ -8,6 +8,7 @@ namespace Mantle.API
         public static void AddDependencies(IServiceCollection services)
         {
             services.AddScoped<Loot.Contracts.IEffectClassLoot, EffectClassLoot>();
+            services.AddScoped<Loot.Contracts.IWeaponClassLoot, WeaponClassLoot>();
         }
     }
 }
