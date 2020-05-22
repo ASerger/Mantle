@@ -38,6 +38,7 @@ namespace Mantle.API.Controllers
         [Route("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(WeaponClass))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [AllowAnonymous]
         public async Task<IActionResult> Get(int id = 0)
         {
             if (id == 0) return BadRequest();
