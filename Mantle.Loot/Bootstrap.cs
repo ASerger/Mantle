@@ -10,6 +10,7 @@ namespace Mantle.Loot
         public static void AddDependencies(IServiceCollection services)
         {
             services.AddScoped<IEffectClassRepo<EffectClass>, EffectClassRepository<EffectClass>>();
+            services.AddScoped<IWeaponClassRepo<WeaponClass>, WeaponClassRepository<WeaponClass>>();
         }
     }
 }
