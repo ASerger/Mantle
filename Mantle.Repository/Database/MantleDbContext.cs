@@ -14,10 +14,26 @@ namespace Mantle.Repository.Database
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            mb.Entity<BaseDataModel>(bdm =>
+            {
+                bdm.HasKey(i => i.Id);
+                bdm.Property(i => i.Id).ValueGeneratedOnAdd();
+                bdm.Property("ModifiedOn").HasDefaultValue();
+                bdm.Property("ModifiedBy").HasDefaultValue();
+            });
+
             mb.Entity<EffectClass>(ec =>
             {
-                ec.HasKey(i => i.Id);
                 ec.Property("EffectName").HasColumnType("varchar(20)");
+            });
+
+            // TODO: 
+            // Need to configure foreign key models still
+            mb.Entity<BaseWeaponCategory>(bwc =>
+            {
+                bwc.Property("WeaponCategory").HasColumnType("varchar(20)");
+                bwc.Property("Cost").HasColumnType("numeric(12,2)");
+                bwc.Property("Weight").HasColumnType("numeric(4,2)");
             });
         }
 
