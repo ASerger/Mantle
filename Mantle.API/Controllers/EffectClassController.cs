@@ -34,7 +34,7 @@ namespace Mantle.API.Controllers
         [HttpGet]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<EffectClass>))]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<IEnumerable<EffectClass>> Get()
         {
             return await _effectClassLoot.GetAllAsync();

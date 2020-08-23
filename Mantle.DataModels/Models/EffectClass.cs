@@ -1,8 +1,8 @@
 ﻿namespace Mantle.DataModels.Models
 {
-    public class EffectClass
+    public class EffectClass : BaseDataModel
     {
-        public int Id { get; set; }
         public string EffectName { get; set; }
+        public int DiceCount { get; set; }
     }
 }

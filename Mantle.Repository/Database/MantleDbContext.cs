@@ -10,14 +10,66 @@ namespace Mantle.Repository.Database
         {
         }
 
-        public virtual DbSet<EffectClass> EffectClass { get; set; }
+        public DbSet<EffectClass> EffectClass { get; set; }
+        public DbSet<BaseDamageType> BaseDamageType { get; set; }
+        public DbSet<BaseProperty> BaseProperty { get; set; }
+        public DbSet<BaseDice> BaseDice { get; set; }
+        public DbSet<BaseWeaponCategory> BaseWeaponCategory { get; set; }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            mb.Entity<EffectClass>(ec =>
+            mb.Entity<EffectClass>(e =>
             {
-                ec.HasKey(i => i.Id);
-                ec.Property("EffectName").HasColumnType("varchar(20)");
+                e.HasKey(i => i.Id);
+                e.Property(i => i.Id).ValueGeneratedOnAdd();
+                e.Property(i => i.EffectName).HasColumnType("varchar(20)").IsRequired();
+                e.Property(i => i.ModifiedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
+                e.Property(i => i.ModifiedBy).HasColumnType("varchar(100)").HasDefaultValue();
+            });
+
+            mb.Entity<BaseDamageType>(e =>
+            {
+                e.HasKey(i => i.Id);
+                e.Property(i => i.Id).ValueGeneratedOnAdd();
+                e.HasMany(bdt => bdt.BaseWeaponCategory).WithOne(bwc => bwc.BaseDamageType).HasForeignKey(f => f.BaseDamageTypeId);
+                e.Property(i => i.DamageType).HasColumnType("varchar(20)").IsRequired();
+                e.Property(i => i.ModifiedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
+                e.Property(i => i.ModifiedBy).HasColumnType("varchar(100)").HasDefaultValue();
+            });
+
+            mb.Entity<BaseWeaponCategory>(e =>
+            {
+                e.HasKey(i => i.Id);
+                e.Property(i => i.Id).ValueGeneratedOnAdd();
+                e.HasOne(bwc => bwc.BaseDamageType).WithMany(bdt => bdt.BaseWeaponCategory).HasForeignKey(f => f.BaseDamageTypeId).IsRequired();
+                e.HasOne(bwc => bwc.BaseDice).WithMany(bd => bd.BaseWeaponCategory).HasForeignKey(f => f.BaseDiceId).IsRequired();
+                e.Property(i => i.WeaponCategory).HasColumnType("varchar(20)").IsRequired();
+                e.Property(i => i.Cost).HasColumnType("numeric(12,2)").IsRequired();
+                e.Property(i => i.Weight).HasColumnType("numeric(4,2)").IsRequired();
+                e.Property(i => i.ModifiedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
+                e.Property(i => i.ModifiedBy).HasColumnType("varchar(100)").HasDefaultValue();
+            });
+
+            mb.Entity<BaseProperty>(e =>
+            {
+                e.HasKey(i => i.Id);
+                e.Property(i => i.Id).ValueGeneratedOnAdd();
+                e.Property(i => i.ModifiedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
+                e.Property(i => i.ModifiedBy).HasColumnType("varchar(100)").HasDefaultValue();
+                e.Property(i => i.Property).HasColumnType("varchar(20)").IsRequired();
+                e.Property(i => i.PropertyDescription).HasColumnType("varchar(700)").IsRequired();
+            });
+
+            mb.Entity<BaseDice>(e =>
+            {
+                e.HasKey(i => i.Id);
+                e.Property(i => i.Id).ValueGeneratedOnAdd();
+                e.Property(i => i.ModifiedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
+                e.Property(i => i.ModifiedBy).HasColumnType("varchar(100)").HasDefaultValue();
+                e.Property(i => i.Count).IsRequired();
+                e.Property(i => i.Sides).IsRequired();
+                e.Property(i => i.DiceDescription).HasColumnType("varchar(20)").IsRequired();
+                e.HasMany(bd => bd.BaseWeaponCategory).WithOne(bwc => bwc.BaseDice).HasForeignKey(f => f.BaseDiceId);
             });
         }
 
