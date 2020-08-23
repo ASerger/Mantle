@@ -33,7 +33,8 @@ namespace Mantle.API.Controllers
         [AllowAnonymous]
         public async Task<IEnumerable<BaseWeaponCategory>> Get()
         {
-            return await _baseWeaponCategoryLoot.GetAllAsync();
+            var data = await _baseWeaponCategoryLoot.GetAllAsync();
+            return data;
         }
     }
 }

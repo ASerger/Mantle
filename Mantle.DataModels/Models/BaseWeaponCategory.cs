@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Mantle.DataModels.Models
 {
@@ -9,9 +7,14 @@ namespace Mantle.DataModels.Models
         public string WeaponCategory { get; set; }
         public double Cost { get; set; }
         public double Weight { get; set; }
-        public int DamageTypeId { get; set; }
         public int BaseDiceId { get; set; }
         public bool IsMartial { get; set; }
         public bool IsRange { get; set; }
+
+        // Foreign key
+        public int BaseDamageTypeId { get; set; }
+
+        // Navigation property
+        public virtual BaseDamageType BaseDamageType { get; set; }
     }
 }

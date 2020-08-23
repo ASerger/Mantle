@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Mantle.Loot
 {
@@ -23,7 +24,10 @@ namespace Mantle.Loot
 
         public async Task<IEnumerable<BaseWeaponCategory>> GetAllAsync()
         {
-            return await _baseWeaponCategoryRepository.GetAllReadOnlyAsync();
+            var data = await _baseWeaponCategoryRepository.GetAllQueryReadOnlyAsync();
+            var baseData = await _baseWeaponCategoryRepository.GetAllReadOnlyAsync();
+
+            return baseData;
         }
 
         public async Task<BaseWeaponCategory> GetByIdAsync(int id)
