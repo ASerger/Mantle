@@ -22,17 +22,19 @@ namespace Mantle.Repository.DataRepo
             var data = (
                 from bwc in _dbContext.BaseWeaponCategory
                 join bdt in _dbContext.BaseDamageType on bwc.BaseDamageTypeId equals bdt.Id
+                join bd in _dbContext.BaseDice on bwc.BaseDiceId equals bd.Id
                 select new BaseWeaponCategory
                 {
                     Id = bwc.Id,
                     WeaponCategory = bwc.WeaponCategory,
+                    BaseDamageTypeId = bwc.BaseDamageTypeId,
                     BaseDamageType = bdt,
                     Weight = bwc.Weight,
                     Cost = bwc.Cost,
                     BaseDiceId = bwc.BaseDiceId,
+                    BaseDice = bd,
                     IsMartial = bwc.IsMartial,
                     IsRange = bwc.IsRange,
-                    BaseDamageTypeId = bwc.BaseDamageTypeId,
                     ModifiedBy = bwc.ModifiedBy,
                     ModifiedOn = bwc.ModifiedOn
                 }).AsNoTracking();
