@@ -23,12 +23,12 @@ namespace Mantle.Loot
 
         public async Task<IEnumerable<BaseWeaponCategory>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _baseWeaponCategoryRepository.GetAllReadOnlyAsync();
         }
 
         public async Task<BaseWeaponCategory> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _baseWeaponCategoryRepository.GetByIdReadOnlyAsync(id);
         }
     }
 }
