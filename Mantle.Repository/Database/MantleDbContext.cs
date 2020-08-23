@@ -29,7 +29,7 @@ namespace Mantle.Repository.Database
             {
                 e.HasKey(i => i.Id);
                 e.Property(i => i.Id).ValueGeneratedOnAdd();
-                //e.HasMany(bdt => bdt.BaseWeaponCategory).WithOne(bwc => bwc.BaseDamageType);
+                e.HasMany(bdt => bdt.BaseWeaponCategory).WithOne(bwc => bwc.BaseDamageType).HasForeignKey(f => f.BaseDamageTypeId);
                 e.Property(i => i.DamageType).HasColumnType("varchar(20)");
                 e.Property(i => i.ModifiedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
                 e.Property(i => i.ModifiedBy).HasColumnType("varchar(100)").HasDefaultValue();
