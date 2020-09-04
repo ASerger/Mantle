@@ -1,4 +1,4 @@
-﻿using Mantle.DataModels.Models;
+﻿using Mantle.DomainModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
