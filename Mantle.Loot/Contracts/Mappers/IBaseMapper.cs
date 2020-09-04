@@ -7,9 +7,9 @@ namespace Mantle.Loot.Contracts.Mappers
 {
     public interface IBaseMapper<T, D> where T: class where D: class
     {
-        Task<D> MapDataToDomainAsync(T dataModel);
-        Task<IEnumerable<D>> MapDataToDomainAsync(IEnumerable<T> dataModel);
-        Task<T> MapDomainToDataAsync(D domainModel);
-        Task<IEnumerable<T>> MapDomainToDataAsync(IEnumerable<D> domainModel);
+        public Task<D> MapDataToDomainAsync(T dataModel);
+        public Task<List<D>> MapDataToDomainAsync(IEnumerable<T> dataModels);
+        public Task<T> MapDomainToDataAsync(D domainModel);
+        public Task<List<T>> MapDomainToDataAsync(IEnumerable<D> domainModels);
     }
 }

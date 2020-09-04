@@ -1,33 +1,73 @@
-﻿using Data = Mantle.DataModels.Models;
-using Domain = Mantle.DomainModels.Models;
-using Mantle.Loot.Contracts.Mappers;
-using System;
+﻿using Mantle.Loot.Contracts.Mappers;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Data = Mantle.DataModels.Models;
+using Domain = Mantle.DomainModels.Models;
 
 namespace Mantle.Loot.Mappers
 {
-    public class BaseWeaponCategoryMapper : IBaseMapper<Data.BaseWeaponCategory, Domain.BaseWeaponCategory>
+    public class BaseWeaponCategoryMapper<T, D> : IBaseMapper<Data.BaseWeaponCategory, Domain.BaseWeaponCategory>
     {
-        Task<Domain.BaseWeaponCategory> IBaseMapper<Data.BaseWeaponCategory, Domain.BaseWeaponCategory>.MapDataToDomainAsync(Data.BaseWeaponCategory dataModel)
+        public async Task<Domain.BaseWeaponCategory> MapDataToDomainAsync(Data.BaseWeaponCategory dataModel)
         {
-            throw new NotImplementedException();
+            var domainModel = new Domain.BaseWeaponCategory
+            {
+                Id = dataModel.Id,
+                BaseDamageTypeId = dataModel.BaseDamageTypeId,
+                BaseDamageType = dataModel.BaseDamageType.DamageType,
+                BaseDiceId = dataModel.BaseDiceId,
+                BaseDice = dataModel.BaseDice.DiceDescription,
+                WeaponCategory = dataModel.WeaponCategory,
+                Cost = dataModel.Cost,
+                IsMartial = dataModel.IsMartial,
+                IsRange = dataModel.IsRange,
+                Weight = dataModel.Weight,
+                ModifiedBy = dataModel.ModifiedBy,
+                ModifiedOn = dataModel.ModifiedOn
+            };
+
+            return await Task.FromResult(domainModel);
         }
 
-        Task<IEnumerable<Domain.BaseWeaponCategory>> IBaseMapper<Data.BaseWeaponCategory, Domain.BaseWeaponCategory>.MapDataToDomainAsync(IEnumerable<Data.BaseWeaponCategory> dataModel)
+        public async Task<List<Domain.BaseWeaponCategory>> MapDataToDomainAsync(IEnumerable<Data.BaseWeaponCategory> dataModels)
         {
-            throw new NotImplementedException();
+            var domainModels = new List<Domain.BaseWeaponCategory>();
+            foreach(var dataModel in dataModels)
+            {
+                domainModels.Add(await MapDataToDomainAsync(dataModel));
+            }
+
+            return await Task.FromResult(domainModels);
         }
 
-        Task<Data.BaseWeaponCategory> IBaseMapper<Data.BaseWeaponCategory, Domain.BaseWeaponCategory>.MapDomainToDataAsync(Domain.BaseWeaponCategory domainModel)
+        public async Task<Data.BaseWeaponCategory> MapDomainToDataAsync(Domain.BaseWeaponCategory domainModel)
         {
-            throw new NotImplementedException();
+            var dataModel = new Data.BaseWeaponCategory
+            {
+                Id = domainModel.Id,
+                BaseDamageTypeId = domainModel.BaseDamageTypeId,
+                BaseDiceId = domainModel.BaseDiceId,
+                Cost = domainModel.Cost,
+                IsMartial = domainModel.IsMartial,
+                IsRange = domainModel.IsRange,
+                WeaponCategory = domainModel.WeaponCategory,
+                Weight = domainModel.Weight,
+                ModifiedBy = domainModel.ModifiedBy,
+                ModifiedOn = domainModel.ModifiedOn
+            };
+
+            return await Task.FromResult(dataModel);
         }
 
-        Task<IEnumerable<Data.BaseWeaponCategory>> IBaseMapper<Data.BaseWeaponCategory, Domain.BaseWeaponCategory>.MapDomainToDataAsync(IEnumerable<Domain.BaseWeaponCategory> domainModel)
+        public async Task<List<Data.BaseWeaponCategory>> MapDomainToDataAsync(IEnumerable<Domain.BaseWeaponCategory> domainModels)
         {
-            throw new NotImplementedException();
+            var dataModels = new List<Data.BaseWeaponCategory>();
+            foreach(var domainModel in domainModels)
+            {
+                dataModels.Add(await MapDomainToDataAsync(domainModel));
+            }
+
+            return await Task.FromResult(dataModels);
         }
     }
 }
