@@ -36,5 +36,15 @@ namespace Mantle.API.Controllers
             var data = await _baseWeaponCategoryLoot.GetAllAsync();
             return data;
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseWeaponCategory))]
+        [AllowAnonymous]
+        public async Task<BaseWeaponCategory> GetById(int id)
+        {
+            var data = await _baseWeaponCategoryLoot.GetByIdAsync(id);
+            return data;
+        }
     }
 }

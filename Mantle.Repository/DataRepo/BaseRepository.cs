@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Mantle.Repository.DataRepo
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public abstract class BaseRepository<T, TContext> : IBaseRepository<T> 
+        where T : class 
+        where TContext : DbContext
     {
-        private MantleDbContext _db;
+        private TContext _db;
 
-        public BaseRepository(MantleDbContext db)
+        public BaseRepository(TContext db)
         {
             _db = db;
         }
@@ -30,11 +32,6 @@ namespace Mantle.Repository.DataRepo
             return await _db.FindAsync<T>(id);
         }
 
-        public async Task<T> GetByIdReadOnlyAsync(int id)
-        {
-            return await _db.FindAsync<T>(id);
-        }
-
         public async Task<int> InsertRecordAsync(T record)
         {
             _db.Add(record);
@@ -46,8 +43,6 @@ namespace Mantle.Repository.DataRepo
             _db.AddRange(records);
             return await _db.SaveChangesAsync();
         }
-
-
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls

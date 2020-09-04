@@ -26,7 +26,7 @@ namespace Mantle.Loot
 
         public async Task<DataModels.Models.EffectClass> GetByIdAsync(int id)
         {
-            return await _effectClassRepo.GetByIdReadOnlyAsync(id);
+            return await _effectClassRepo.GetByIdAsync(id);
         }
     }
 }

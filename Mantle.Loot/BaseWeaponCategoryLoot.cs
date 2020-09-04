@@ -32,7 +32,7 @@ namespace Mantle.Loot
 
         public async Task<Domainmodels.BaseWeaponCategory> GetByIdAsync(int id)
         {
-            var data  = await _baseWeaponCategoryRepository.GetByIdReadOnlyAsync(id);
+            var data  = await _baseWeaponCategoryRepository.GetByIdAsync(id);
             return await _mapper.MapDataToDomainAsync(data);
         }
     }
