@@ -23,9 +23,26 @@ namespace Mantle.API
 
         public IConfiguration Configuration { get; }
 
+        readonly string AllowAll = "_allowAll";
+        readonly string ProductionCors = "_productionCors";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: AllowAll,
+                    // TODO: Fix Cors policy once a deployed environment is available
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin();
+                    });
+                options.AddPolicy(name: ProductionCors,
+                    builder =>
+                    {
+                    });
+            });
+
             services.AddControllers();
             services.AddDbContext<MantleDbContext>(options =>
             {
@@ -58,8 +75,16 @@ namespace Mantle.API
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
+
+            if (env.IsProduction())
+            {
+                app.UseCors(ProductionCors);
+            }
+            else
+            {
+                app.UseCors(AllowAll);
+            }
 
             app.UseAuthentication();
             app.UseAuthorization();
