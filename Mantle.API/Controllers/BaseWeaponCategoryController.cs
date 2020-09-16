@@ -33,8 +33,8 @@ namespace Mantle.API.Controllers
         [AllowAnonymous]
         public async Task<IEnumerable<BaseWeaponCategory>> Get()
         {
-            var data = await _baseWeaponCategoryLoot.GetAllAsync();
-            return data;
+            var domain = await _baseWeaponCategoryLoot.GetAllAsync();
+            return domain;
         }
 
         [HttpGet]
@@ -43,8 +43,8 @@ namespace Mantle.API.Controllers
         [AllowAnonymous]
         public async Task<BaseWeaponCategory> GetById(int id)
         {
-            var data = await _baseWeaponCategoryLoot.GetByIdAsync(id);
-            return data;
+            var domain = await _baseWeaponCategoryLoot.GetByIdAsync(id);
+            return domain;
         }
     }
 }

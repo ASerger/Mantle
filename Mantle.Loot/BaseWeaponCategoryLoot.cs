@@ -26,14 +26,14 @@ namespace Mantle.Loot
 
         public async Task<IEnumerable<Domainmodels.BaseWeaponCategory>> GetAllAsync()
         {
-            var data = await _baseWeaponCategoryRepository.GetAllReadOnlyAsync();
-            return await _mapper.MapDataToDomainAsync(data);
+            var domain = await _mapper.MapDataToDomainAsync(await _baseWeaponCategoryRepository.GetAllReadOnlyAsync());
+            return domain;
         }
 
         public async Task<Domainmodels.BaseWeaponCategory> GetByIdAsync(int id)
         {
-            var data  = await _baseWeaponCategoryRepository.GetByIdAsync(id);
-            return await _mapper.MapDataToDomainAsync(data);
+            var domain = await _mapper.MapDataToDomainAsync(await _baseWeaponCategoryRepository.GetByIdAsync(id));
+            return domain;
         }
     }
 }
