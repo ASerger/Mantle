@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Mantle.Tests
 {
     [TestFixture]
-    public class Tests
+    public class BaseWeaponCategoryBusinessTests
     {
         private BaseWeaponCategoryLoot _baseWeaponCategoryBusiness;
         private Mock<IBaseWeaponCategoryRepository<BaseWeaponCategory>> _mockBWCRepo;
@@ -29,7 +29,7 @@ namespace Mantle.Tests
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        public async Task Test1(int testValue)
+        public async Task GetByIdAsync_TestValue_MockUtilizesTestValue(int testValue)
         {
             var domain = await _baseWeaponCategoryBusiness.GetByIdAsync(testValue);
 
