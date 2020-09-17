@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mantle.Loot", "Mantle.Loot\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mantle.DataModels", "Mantle.DataModels\Mantle.DataModels.csproj", "{5AC3FF89-7C1C-4601-968F-024075C266E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mantle.DomainModels", "Mantle.DomainModels\Mantle.DomainModels.csproj", "{95B3E740-112E-4348-8E44-A7409C5259A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mantle.DomainModels", "Mantle.DomainModels\Mantle.DomainModels.csproj", "{95B3E740-112E-4348-8E44-A7409C5259A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mantle.Tests", "Mantle.Tests\Mantle.Tests.csproj", "{62B3EFA1-BA65-45CF-9FFF-CF513E3669FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{95B3E740-112E-4348-8E44-A7409C5259A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95B3E740-112E-4348-8E44-A7409C5259A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95B3E740-112E-4348-8E44-A7409C5259A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62B3EFA1-BA65-45CF-9FFF-CF513E3669FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62B3EFA1-BA65-45CF-9FFF-CF513E3669FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62B3EFA1-BA65-45CF-9FFF-CF513E3669FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62B3EFA1-BA65-45CF-9FFF-CF513E3669FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
