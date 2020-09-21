@@ -4,6 +4,16 @@
         <name>Mantle.API</name>
     </assembly>
     <members>
+        <member name="M:Mantle.API.Controllers.BaseWeaponCategoryController.Get">
+            <summary>
+            Retrieve a full list of BaseWeaponCategories from the Database, joined to get the base dice and properties strings
+            </summary>
+        </member>
+        <member name="M:Mantle.API.Controllers.BaseWeaponCategoryController.GetById(System.Int32)">
+            <summary>
+            Retrieve a BaseWeaponCategory from the Database by Primary Key ID, joined to get the base dice and properties strings
+            </summary>
+        </member>
         <member name="T:Mantle.API.Controllers.EffectClassController">
             <summary>
             Template controller round 1

@@ -14,6 +14,7 @@ namespace Mantle.Loot
             services.AddScoped<IBaseWeaponCategoryRepository<DataModels.Models.BaseWeaponCategory>, BaseWeaponCategoryRepository<DataModels.Models.BaseWeaponCategory>>();
 
             services.AddScoped<IBaseMapper<DataModels.Models.BaseWeaponCategory, DomainModels.Models.BaseWeaponCategory>, BaseWeaponCategoryMapper<DataModels.Models.BaseWeaponCategory, DomainModels.Models.BaseWeaponCategory>>();
+            services.AddScoped<IBaseMapper<DataModels.Models.EffectClass, DomainModels.Models.EffectClass>, EffectClassMapper<DataModels.Models.EffectClass, DomainModels.Models.EffectClass>>();
         }
     }
 }
