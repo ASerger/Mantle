@@ -44,6 +44,7 @@ namespace Mantle.API.Controllers
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseWeaponCategory))]
+        [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(BaseWeaponCategory))]
         [AllowAnonymous]
         public async Task<BaseWeaponCategory> GetById(int id)
         {
