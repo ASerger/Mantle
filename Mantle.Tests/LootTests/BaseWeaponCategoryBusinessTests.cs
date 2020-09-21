@@ -35,5 +35,29 @@ namespace Mantle.Tests
 
             _mockBWCRepo.Verify(f => f.GetByIdAsync(testValue));
         }
+
+        [Test]
+        public async Task PostNewBaseWeaponCategoryWithExistingBases_MockUtilizesTestModel()
+        {
+            var bwcDomainModel = CreateNewDomainObject();
+            var addRecord = await _baseWeaponCategoryBusiness.AddRecordAsync(bwcDomainModel);
+            var dataModel = await _mockMapper.Object.MapDomainToDataAsync(bwcDomainModel);
+
+            _mockBWCRepo.Verify(f => f.InsertRecordAsync(dataModel));
+        }
+
+        private static DomainModels.Models.BaseWeaponCategory CreateNewDomainObject()
+        {
+            return new DomainModels.Models.BaseWeaponCategory
+            {
+                BaseDamageTypeId = 1,
+                BaseDiceId = 12,
+                Cost = 2.5,
+                Weight = 5,
+                IsMartial = true,
+                IsRange = false,
+                WeaponCategory = "",
+            };
+        }
     }
 }

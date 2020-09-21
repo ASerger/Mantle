@@ -32,10 +32,11 @@ namespace Mantle.Repository.DataRepo
             return await _db.FindAsync<T>(id);
         }
 
-        public async Task<int> InsertRecordAsync(T record)
+        public async Task<T> InsertRecordAsync(T record)
         {
             _db.Add(record);
-            return await _db.SaveChangesAsync();
+            var addCount = await _db.SaveChangesAsync();
+            return addCount != 0 ? record : null;
         }
 
         public async Task<int> InsertRecordsAsync(IEnumerable<T> records)

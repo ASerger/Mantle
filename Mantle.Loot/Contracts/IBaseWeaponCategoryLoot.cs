@@ -8,5 +8,6 @@ namespace Mantle.Loot.Contracts
     {
         Task<BaseWeaponCategory> GetByIdAsync(int id);
         Task<IEnumerable<BaseWeaponCategory>> GetAllAsync();
+        Task<BaseWeaponCategory> AddRecordAsync(BaseWeaponCategory domainModel);
     }
 }

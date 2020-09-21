@@ -6,6 +6,7 @@ using Mantle.Repository.Contracts;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Mantle.DomainModels.Models;
 
 namespace Mantle.Loot
 {
@@ -22,6 +23,14 @@ namespace Mantle.Loot
             _baseWeaponCategoryRepository = baseWeaponCategoryRepo;
             _mapper = mapper;
             _logger = logger;
+        }
+
+        public async Task<BaseWeaponCategory> AddRecordAsync(BaseWeaponCategory domainModel)
+        {
+            var data = await _mapper.MapDomainToDataAsync(domainModel);
+            var addedRecord = await _baseWeaponCategoryRepository.InsertRecordAsync(data);
+
+            return await _mapper.MapDataToDomainAsync(addedRecord);
         }
 
         public async Task<IEnumerable<Domainmodels.BaseWeaponCategory>> GetAllAsync()
