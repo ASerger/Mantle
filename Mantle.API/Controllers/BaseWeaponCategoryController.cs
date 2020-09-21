@@ -36,7 +36,7 @@ namespace Mantle.API.Controllers
         [AllowAnonymous]
         public async Task<IEnumerable<BaseWeaponCategory>> Get()
         {
-            _logger.LogInformation($"User: {User.Claims.ToArray()[4].Value} Request URL: {Request.GetDisplayUrl()}");
+            _logger.LogInformation($"User: {User.Claims.ElementAtOrDefault(4)} Request URL: {Request.GetDisplayUrl()}");
             var domain = await _baseWeaponCategoryLoot.GetAllAsync();
             return domain;
         }
@@ -47,7 +47,7 @@ namespace Mantle.API.Controllers
         [AllowAnonymous]
         public async Task<BaseWeaponCategory> GetById(int id)
         {
-            _logger.LogInformation($"User: {User.Claims.ToArray()[4].Value} Request URL: {Request.GetDisplayUrl()}");
+            _logger.LogInformation($"User: {User.Claims.ElementAtOrDefault(4)} Request URL: {Request.GetDisplayUrl()}");
             var domain = await _baseWeaponCategoryLoot.GetByIdAsync(id);
             return domain;
         }
