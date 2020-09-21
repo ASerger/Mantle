@@ -30,6 +30,9 @@ namespace Mantle.API.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Retrieve a full list of BaseWeaponCategories from the Database, joined to get the base dice and properties strings
+        /// </summary>
         [HttpGet]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK, Type=typeof(List<BaseWeaponCategory>))]
@@ -41,6 +44,9 @@ namespace Mantle.API.Controllers
             return domain;
         }
 
+        /// <summary>
+        /// Retrieve a BaseWeaponCategory from the Database by Primary Key ID, joined to get the base dice and properties strings
+        /// </summary>
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseWeaponCategory))]

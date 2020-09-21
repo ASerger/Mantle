@@ -1,4 +1,4 @@
-﻿using Mantle.DataModels.Models;
+﻿using Mantle.DomainModels.Models;
 using Mantle.Loot.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
