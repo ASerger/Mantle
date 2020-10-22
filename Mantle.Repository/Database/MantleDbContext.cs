@@ -15,6 +15,9 @@ namespace Mantle.Repository.Database
         public DbSet<BaseProperty> BaseProperty { get; set; }
         public DbSet<BaseDice> BaseDice { get; set; }
         public DbSet<BaseWeaponCategory> BaseWeaponCategory { get; set; }
+        public DbSet<BaseWeaponEffect> BaseWeaponEffect { get; set; }
+        public DbSet<RarityLevel> RarityLevel { get; set; }
+        public DbSet<GeneratedWeapon> GeneratedWeapon { get; set; }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
@@ -43,9 +46,24 @@ namespace Mantle.Repository.Database
                 e.Property(i => i.Id).ValueGeneratedOnAdd();
                 e.HasOne(bwc => bwc.BaseDamageType).WithMany(bdt => bdt.BaseWeaponCategory).HasForeignKey(f => f.BaseDamageTypeId).IsRequired();
                 e.HasOne(bwc => bwc.BaseDice).WithMany(bd => bd.BaseWeaponCategory).HasForeignKey(f => f.BaseDiceId).IsRequired();
+                e.HasMany(bwc => bwc.GeneratedWeapon).WithOne(gw => gw.BaseWeaponCategory).HasForeignKey(f => f.BaseWeaponCategoryId);
                 e.Property(i => i.WeaponCategory).HasColumnType("varchar(20)").IsRequired();
                 e.Property(i => i.Cost).HasColumnType("numeric(12,2)").IsRequired();
                 e.Property(i => i.Weight).HasColumnType("numeric(4,2)").IsRequired();
+                e.Property(i => i.ModifiedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
+                e.Property(i => i.ModifiedBy).HasColumnType("varchar(100)").HasDefaultValue();
+            });
+
+            mb.Entity<BaseWeaponEffect>(e =>
+            {
+                e.HasKey(i => i.Id);
+                e.Property(i => i.Id).ValueGeneratedOnAdd();
+                e.HasOne(bwe => bwe.EffectClass).WithMany(ec => ec.BaseWeaponEffect).HasForeignKey(f => f.EffectClassId).IsRequired();
+                e.HasOne(bwe => bwe.BaseDice).WithMany(bd => bd.BaseWeaponEffect).HasForeignKey(f => f.BaseDiceId).IsRequired();
+                e.HasMany(bwe => bwe.GeneratedWeapon).WithOne(gw => gw.BaseWeaponEffect).HasForeignKey(f => f.BaseWeaponEffetId);
+                e.Property(i => i.EffectDescription).HasColumnType("varchar(25)").IsRequired();
+                e.Property(i => i.Prefix).HasColumnType("varchar(25)").IsRequired();
+                e.Property(i => i.Suffix).HasColumnType("varchar(25)").IsRequired();
                 e.Property(i => i.ModifiedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
                 e.Property(i => i.ModifiedBy).HasColumnType("varchar(100)").HasDefaultValue();
             });
@@ -60,6 +78,26 @@ namespace Mantle.Repository.Database
                 e.Property(i => i.PropertyDescription).HasColumnType("varchar(700)").IsRequired();
             });
 
+            mb.Entity<RarityLevel>(e =>
+            {
+                e.HasKey(i => i.Id);
+                e.Property(i => i.Id).ValueGeneratedOnAdd();
+                e.Property(i => i.ModifiedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
+                e.Property(i => i.ModifiedBy).HasColumnType("varchar(100)").HasDefaultValue();
+                e.Property(i => i.RarityLevelName).HasColumnType("varchar(20)").IsRequired();
+            });
+
+            mb.Entity<GeneratedWeapon>(e =>
+            {
+                e.HasKey(i => i.Id);
+                e.Property(i => i.Id).ValueGeneratedOnAdd();
+                e.Property(i => i.ModifiedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
+                e.Property(i => i.ModifiedBy).HasColumnType("varchar(100)").HasDefaultValue();
+                e.Property(i => i.GeneratedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
+                e.HasOne(gw => gw.BaseWeaponCategory).WithMany(bwc => bwc.GeneratedWeapon).HasForeignKey(f => f.BaseWeaponCategoryId).IsRequired();
+                e.HasOne(gw => gw.BaseWeaponEffect).WithMany(bwe => bwe.GeneratedWeapon).HasForeignKey(f => f.BaseWeaponEffetId).IsRequired();
+            });
+
             mb.Entity<BaseDice>(e =>
             {
                 e.HasKey(i => i.Id);
@@ -70,6 +108,7 @@ namespace Mantle.Repository.Database
                 e.Property(i => i.Sides).IsRequired();
                 e.Property(i => i.DiceDescription).HasColumnType("varchar(20)").IsRequired();
                 e.HasMany(bd => bd.BaseWeaponCategory).WithOne(bwc => bwc.BaseDice).HasForeignKey(f => f.BaseDiceId);
+                e.HasMany(bd => bd.BaseWeaponEffect).WithOne(bwe => bwe.BaseDice).HasForeignKey(f => f.BaseDiceId);
             });
         }
 
