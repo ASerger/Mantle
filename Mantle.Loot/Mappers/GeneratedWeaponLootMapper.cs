@@ -9,22 +9,35 @@ namespace Mantle.Loot.Mappers
 {
     public class GeneratedWeaponLootMapper : IBaseMapper<Data.GeneratedWeapon, Domain.GeneratedWeapon>
     {
-        public Task<Domain.GeneratedWeapon> MapDataToDomainAsync(Data.GeneratedWeapon dataModel)
+        public async Task<Domain.GeneratedWeapon> MapDataToDomainAsync(Data.GeneratedWeapon dataModel)
+        {
+            return await Task.FromResult(new Domain.GeneratedWeapon
+            {
+                Id = dataModel.Id,
+                BaseWeaponCategoryId = dataModel.BaseWeaponCategoryId,
+                BaseWeaponEffectId = dataModel.BaseWeaponEffetId,
+                GeneratedOn = dataModel.GeneratedOn,
+                ModifiedBy = dataModel.ModifiedBy,
+                ModifiedOn = dataModel.ModifiedOn
+            });
+        }
+
+        public async Task<List<Domain.GeneratedWeapon>> MapDataToDomainAsync(IEnumerable<Data.GeneratedWeapon> dataModels)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<List<Domain.GeneratedWeapon>> MapDataToDomainAsync(IEnumerable<Data.GeneratedWeapon> dataModels)
+        public async Task<Data.GeneratedWeapon> MapDomainToDataAsync(Domain.GeneratedWeapon domainModel)
         {
-            throw new System.NotImplementedException();
+            return await Task.FromResult(new Data.GeneratedWeapon
+            {
+                Id = domainModel.Id,
+                BaseWeaponCategoryId = domainModel.BaseWeaponCategoryId,
+                BaseWeaponEffetId = domainModel.BaseWeaponEffectId
+            });
         }
 
-        public Task<Data.GeneratedWeapon> MapDomainToDataAsync(Domain.GeneratedWeapon domainModel)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<List<Data.GeneratedWeapon>> MapDomainToDataAsync(IEnumerable<Domain.GeneratedWeapon> domainModels)
+        public async Task<List<Data.GeneratedWeapon>> MapDomainToDataAsync(IEnumerable<Domain.GeneratedWeapon> domainModels)
         {
             throw new System.NotImplementedException();
         }

@@ -1,13 +1,16 @@
-﻿using Mantle.Repository.Contracts;
+﻿using Mantle.DataModels.Models;
+using Mantle.Repository.Contracts;
 using Mantle.Repository.Database;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Mantle.Repository.DataRepo
 {
     public abstract class BaseRepository<T, TContext> : IBaseRepository<T> 
-        where T : class 
+        where T : BaseDataModel 
         where TContext : DbContext
     {
         private TContext _db;
@@ -41,6 +44,20 @@ namespace Mantle.Repository.DataRepo
         public async Task<int> InsertRecordsAsync(IEnumerable<T> records)
         {
             _db.AddRange(records);
+            return await _db.SaveChangesAsync();
+        }
+
+        public async Task<int> UpdateRecordAsync(T record)
+        {
+            record.ModifiedOn = DateTimeOffset.Now;
+            _db.Update(record);
+            return await _db.SaveChangesAsync();
+        }
+
+        public async Task<int> UpdateRecordsAsync(IEnumerable<T> records)
+        {
+            records.Select(o => o.ModifiedOn = DateTimeOffset.Now);
+            _db.UpdateRange(records);
             return await _db.SaveChangesAsync();
         }
 

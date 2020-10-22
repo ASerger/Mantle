@@ -11,5 +11,7 @@ namespace Mantle.Repository.Contracts
         Task<T> GetByIdAsync(int id);
         Task<int> InsertRecordAsync(T record);
         Task<int> InsertRecordsAsync(IEnumerable<T> records);
+        Task<int> UpdateRecordAsync(T record);
+        Task<int> UpdateRecordsAsync(IEnumerable<T> records);
     }
 }
