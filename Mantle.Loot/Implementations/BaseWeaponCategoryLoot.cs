@@ -1,5 +1,5 @@
-﻿using Datamodels = Mantle.DataModels.Models;
-using Domainmodels = Mantle.DomainModels.Models;
+﻿using Data = Mantle.DataModels.Models;
+using Domain = Mantle.DomainModels.Models;
 using Mantle.Loot.Contracts;
 using Mantle.Loot.Contracts.Mappers;
 using Mantle.Repository.Contracts;
@@ -7,16 +7,16 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Mantle.Loot
+namespace Mantle.Loot.Implementations
 {
     public class BaseWeaponCategoryLoot : IBaseWeaponCategoryLoot
     {
-        private IBaseWeaponCategoryRepository<Datamodels.BaseWeaponCategory> _baseWeaponCategoryRepository;
-        private IBaseMapper<Datamodels.BaseWeaponCategory, Domainmodels.BaseWeaponCategory> _mapper;
+        private IBaseWeaponCategoryRepository _baseWeaponCategoryRepository;
+        private IBaseMapper<Data.BaseWeaponCategory, Domain.BaseWeaponCategory> _mapper;
         private ILogger<BaseWeaponCategoryLoot> _logger;
 
-        public BaseWeaponCategoryLoot(IBaseWeaponCategoryRepository<Datamodels.BaseWeaponCategory> baseWeaponCategoryRepo,
-            IBaseMapper<Datamodels.BaseWeaponCategory, Domainmodels.BaseWeaponCategory> mapper,
+        public BaseWeaponCategoryLoot(IBaseWeaponCategoryRepository baseWeaponCategoryRepo,
+            IBaseMapper<Data.BaseWeaponCategory, Domain.BaseWeaponCategory> mapper,
             ILogger<BaseWeaponCategoryLoot> logger)
         {
             _baseWeaponCategoryRepository = baseWeaponCategoryRepo;
@@ -24,13 +24,13 @@ namespace Mantle.Loot
             _logger = logger;
         }
 
-        public async Task<IEnumerable<Domainmodels.BaseWeaponCategory>> GetAllAsync()
+        public async Task<IEnumerable<Domain.BaseWeaponCategory>> GetAllAsync()
         {
             var domain = await _mapper.MapDataToDomainAsync(await _baseWeaponCategoryRepository.GetAllReadOnlyAsync());
             return domain;
         }
 
-        public async Task<Domainmodels.BaseWeaponCategory> GetByIdAsync(int id)
+        public async Task<Domain.BaseWeaponCategory> GetByIdAsync(int id)
         {
             var domain = await _mapper.MapDataToDomainAsync(await _baseWeaponCategoryRepository.GetByIdAsync(id));
             return domain;

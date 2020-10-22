@@ -1,4 +1,4 @@
-﻿using Mantle.DomainModels.Models;
+﻿using Domain = Mantle.DomainModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +8,7 @@ namespace Mantle.Loot.Contracts
 {
     public interface IBaseWeaponCategoryLoot
     {
-        Task<BaseWeaponCategory> GetByIdAsync(int id);
-        Task<IEnumerable<BaseWeaponCategory>> GetAllAsync();
+        Task<Domain.BaseWeaponCategory> GetByIdAsync(int id);
+        Task<IEnumerable<Domain.BaseWeaponCategory>> GetAllAsync();
     }
 }

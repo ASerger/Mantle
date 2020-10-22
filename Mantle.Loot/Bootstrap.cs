@@ -3,6 +3,8 @@ using Mantle.Loot.Mappers;
 using Mantle.Repository.Contracts;
 using Mantle.Repository.DataRepo;
 using Microsoft.Extensions.DependencyInjection;
+using Data = Mantle.DataModels.Models;
+using Domain = Mantle.DomainModels.Models;
 
 namespace Mantle.Loot
 {
@@ -10,10 +12,12 @@ namespace Mantle.Loot
     {
         public static void AddDependencies(IServiceCollection services)
         {
-            services.AddScoped<IEffectClassRepository<DataModels.Models.EffectClass>, EffectClassRepository<DataModels.Models.EffectClass>>();
-            services.AddScoped<IBaseWeaponCategoryRepository<DataModels.Models.BaseWeaponCategory>, BaseWeaponCategoryRepository<DataModels.Models.BaseWeaponCategory>>();
+            services.AddScoped<IEffectClassRepository, EffectClassRepository>();
+            services.AddScoped<IBaseWeaponCategoryRepository, BaseWeaponCategoryRepository>();
+            services.AddScoped<IGeneratedWeaponRepository, GeneratedWeaponRepository>();
 
-            services.AddScoped<IBaseMapper<DataModels.Models.BaseWeaponCategory, DomainModels.Models.BaseWeaponCategory>, BaseWeaponCategoryMapper<DataModels.Models.BaseWeaponCategory, DomainModels.Models.BaseWeaponCategory>>();
+            services.AddScoped<IBaseMapper<Data.BaseWeaponCategory, Domain.BaseWeaponCategory>, BaseWeaponCategoryMapper>();
+            services.AddScoped<IBaseMapper<Data.GeneratedWeapon, Domain.GeneratedWeapon>, GeneratedWeaponLootMapper>();
         }
     }
 }
