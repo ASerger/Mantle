@@ -104,6 +104,7 @@ namespace Mantle.API
         internal void InitializeSwagger(SwaggerGenOptions swag)
         {
             swag.SwaggerDoc("v1", info: new OpenApiInfo { Title = "Mantle", Version = "V1" });
+            swag.CustomSchemaIds(o => o.FullName);
             swag.AddSecurityDefinition("Bearer",
                 new OpenApiSecurityScheme
                 {

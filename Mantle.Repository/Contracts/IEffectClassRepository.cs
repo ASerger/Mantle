@@ -2,7 +2,7 @@
 
 namespace Mantle.Repository.Contracts
 {
-    public interface IEffectClassRepository<T> : IBaseRepository<EffectClass>
+    public interface IEffectClassRepository : IBaseRepository<EffectClass>
     {
     }
 }

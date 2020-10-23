@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mantle.Repository.DataRepo
 {
-    public class BaseWeaponCategoryRepository<T> : BaseRepository<BaseWeaponCategory, MantleDbContext>, IBaseWeaponCategoryRepository<BaseWeaponCategory>
+    public class BaseWeaponCategoryRepository : BaseRepository<BaseWeaponCategory, MantleDbContext>, IBaseWeaponCategoryRepository
     {
         MantleDbContext _dbContext;
 

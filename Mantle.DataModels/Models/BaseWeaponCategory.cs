@@ -17,5 +17,6 @@ namespace Mantle.DataModels.Models
         // Navigation property
         public virtual BaseDamageType BaseDamageType { get; set; }
         public virtual BaseDice BaseDice { get; set; }
+        public ICollection<GeneratedWeapon> GeneratedWeapon { get; set; }
     }
 }

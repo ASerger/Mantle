@@ -6,16 +6,16 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Mantle.Loot
+namespace Mantle.Loot.Implementations
 {
     public class EffectClassLoot : IEffectClassLoot
     {
-        private IEffectClassRepository<DataModels.Models.EffectClass> _effectClassRepo;
+        private IEffectClassRepository _effectClassRepo;
         private IBaseMapper<DataModels.Models.EffectClass, DomainModels.Models.EffectClass> _effectClassMapper;
         private ILogger<EffectClassLoot> _logger;
 
-        public EffectClassLoot(IEffectClassRepository<DataModels.Models.EffectClass> effectClassRepo,
-            IBaseMapper<EffectClass, DomainModels.Models.EffectClass> effectClassMapper,
+        public EffectClassLoot(IEffectClassRepository effectClassRepo,
+            IBaseMapper<DataModels.Models.EffectClass, DomainModels.Models.EffectClass> effectClassMapper,
             ILogger<EffectClassLoot> logger)
         {
             _effectClassRepo = effectClassRepo;

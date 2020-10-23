@@ -9,5 +9,6 @@ namespace Mantle.DataModels.Models
         public string DiceDescription { get; set; }
 
         public ICollection<BaseWeaponCategory> BaseWeaponCategory { get; set; }
+        public ICollection<BaseWeaponEffect> BaseWeaponEffect { get; set; }
     }
 }

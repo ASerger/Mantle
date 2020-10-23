@@ -6,7 +6,7 @@ using Domain = Mantle.DomainModels.Models;
 
 namespace Mantle.Loot.Mappers
 {
-    public class BaseWeaponCategoryMapper<T, D> : IBaseMapper<Data.BaseWeaponCategory, Domain.BaseWeaponCategory>
+    public class BaseWeaponCategoryMapper : IBaseMapper<Data.BaseWeaponCategory, Domain.BaseWeaponCategory>
     {
         public async Task<Domain.BaseWeaponCategory> MapDataToDomainAsync(Data.BaseWeaponCategory dataModel)
         {
