@@ -7,7 +7,7 @@ namespace Mantle.DataModels.Models
         public DateTimeOffset GeneratedOn { get; set; }
 
         public int BaseWeaponCategoryId { get; set; }
-        public int BaseWeaponEffetId { get; set; }
+        public int BaseWeaponEffectId { get; set; }
 
         public virtual BaseWeaponCategory BaseWeaponCategory { get; set; }
         public virtual BaseWeaponEffect BaseWeaponEffect { get; set; }

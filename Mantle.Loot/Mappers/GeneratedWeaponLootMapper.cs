@@ -15,7 +15,7 @@ namespace Mantle.Loot.Mappers
             {
                 Id = dataModel.Id,
                 BaseWeaponCategoryId = dataModel.BaseWeaponCategoryId,
-                BaseWeaponEffectId = dataModel.BaseWeaponEffetId,
+                BaseWeaponEffectId = dataModel.BaseWeaponEffectId,
                 GeneratedOn = dataModel.GeneratedOn,
                 ModifiedBy = dataModel.ModifiedBy,
                 ModifiedOn = dataModel.ModifiedOn
@@ -24,7 +24,13 @@ namespace Mantle.Loot.Mappers
 
         public async Task<List<Domain.GeneratedWeapon>> MapDataToDomainAsync(IEnumerable<Data.GeneratedWeapon> dataModels)
         {
-            throw new System.NotImplementedException();
+            var domainList = new List<Domain.GeneratedWeapon>();
+            foreach(var dataModel in dataModels)
+            {
+                domainList.Add(await MapDataToDomainAsync(dataModel));
+            }
+
+            return await Task.FromResult(domainList);
         }
 
         public async Task<Data.GeneratedWeapon> MapDomainToDataAsync(Domain.GeneratedWeapon domainModel)
@@ -33,13 +39,19 @@ namespace Mantle.Loot.Mappers
             {
                 Id = domainModel.Id,
                 BaseWeaponCategoryId = domainModel.BaseWeaponCategoryId,
-                BaseWeaponEffetId = domainModel.BaseWeaponEffectId
+                BaseWeaponEffectId = domainModel.BaseWeaponEffectId
             });
         }
 
         public async Task<List<Data.GeneratedWeapon>> MapDomainToDataAsync(IEnumerable<Domain.GeneratedWeapon> domainModels)
         {
-            throw new System.NotImplementedException();
+            var dataList = new List<Data.GeneratedWeapon>();
+            foreach(var domainModel in domainModels)
+            {
+                dataList.Add(await MapDomainToDataAsync(domainModel));
+            }
+
+            return await Task.FromResult(dataList);
         }
     }
 }

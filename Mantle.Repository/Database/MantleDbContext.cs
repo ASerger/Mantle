@@ -60,7 +60,7 @@ namespace Mantle.Repository.Database
                 e.Property(i => i.Id).ValueGeneratedOnAdd();
                 e.HasOne(bwe => bwe.EffectClass).WithMany(ec => ec.BaseWeaponEffect).HasForeignKey(f => f.EffectClassId).IsRequired();
                 e.HasOne(bwe => bwe.BaseDice).WithMany(bd => bd.BaseWeaponEffect).HasForeignKey(f => f.BaseDiceId).IsRequired();
-                e.HasMany(bwe => bwe.GeneratedWeapon).WithOne(gw => gw.BaseWeaponEffect).HasForeignKey(f => f.BaseWeaponEffetId);
+                e.HasMany(bwe => bwe.GeneratedWeapon).WithOne(gw => gw.BaseWeaponEffect).HasForeignKey(f => f.BaseWeaponEffectId);
                 e.Property(i => i.EffectDescription).HasColumnType("varchar(25)").IsRequired();
                 e.Property(i => i.Prefix).HasColumnType("varchar(25)").IsRequired();
                 e.Property(i => i.Suffix).HasColumnType("varchar(25)").IsRequired();
@@ -95,7 +95,7 @@ namespace Mantle.Repository.Database
                 e.Property(i => i.ModifiedBy).HasColumnType("varchar(100)").HasDefaultValue();
                 e.Property(i => i.GeneratedOn).HasColumnType("datetimeoffset(7)").HasDefaultValue();
                 e.HasOne(gw => gw.BaseWeaponCategory).WithMany(bwc => bwc.GeneratedWeapon).HasForeignKey(f => f.BaseWeaponCategoryId).IsRequired();
-                e.HasOne(gw => gw.BaseWeaponEffect).WithMany(bwe => bwe.GeneratedWeapon).HasForeignKey(f => f.BaseWeaponEffetId).IsRequired();
+                e.HasOne(gw => gw.BaseWeaponEffect).WithMany(bwe => bwe.GeneratedWeapon).HasForeignKey(f => f.BaseWeaponEffectId).IsRequired();
             });
 
             mb.Entity<BaseDice>(e =>
