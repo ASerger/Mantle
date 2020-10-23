@@ -50,6 +50,7 @@ namespace Mantle.API.Controllers
         }
 
         [HttpPost]
+        [Route("Rando")]
         [AllowAnonymous]
         public async Task<GeneratedWeapon> GenerateWeaponAsync()
         {
@@ -57,7 +58,9 @@ namespace Mantle.API.Controllers
             return domain;
         }
 
-        public async Task<IEnumerable<GeneratedWeapon>> GenerateWeaponsAsync(int?[] weaponCategoryIdsPreferred, int?[] effectIdsPreferred)
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IEnumerable<GeneratedWeapon>> GenerateWeaponsAsync([FromBody] Dictionary<string, int?> desiredNonRandomValues)
         {
             throw new NotImplementedException();
         }
