@@ -6,7 +6,7 @@ using Domain = Mantle.DomainModels.Models;
 
 namespace Mantle.Loot.Mappers
 {
-    public class EffectClassMapper<T, D> : IBaseMapper<Data.EffectClass, Domain.EffectClass>
+    public class EffectClassMapper : IBaseMapper<Data.EffectClass, Domain.EffectClass>
     {
         public async Task<Domain.EffectClass> MapDataToDomainAsync(Data.EffectClass dataModel)
         {
