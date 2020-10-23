@@ -29,8 +29,19 @@ namespace Mantle.API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GeneratedWeapon>))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [AllowAnonymous]
+        public async Task<IEnumerable<GeneratedWeapon>> GetAll()
+        {
+            var domain = await _generatedWeaponLoot.GetAllReadOnlyAsync();
+            return domain;
+        }
+
+        [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GeneratedWeapon))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [AllowAnonymous]
         public async Task<GeneratedWeapon> GetById(int id)
         {
