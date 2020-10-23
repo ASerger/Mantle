@@ -32,7 +32,7 @@ namespace Mantle.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GeneratedWeapon>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [AllowAnonymous]
-        public async Task<IEnumerable<GeneratedWeapon>> GetAll()
+        public async Task<IEnumerable<GeneratedWeapon>> GetAllAsync()
         {
             var domain = await _generatedWeaponLoot.GetAllReadOnlyAsync();
             return domain;
@@ -43,10 +43,23 @@ namespace Mantle.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GeneratedWeapon))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [AllowAnonymous]
-        public async Task<GeneratedWeapon> GetById(int id)
+        public async Task<GeneratedWeapon> GetByIdAsync(int id)
         {
             var domain = await _generatedWeaponLoot.GetByIdAsync(id);
             return domain;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<GeneratedWeapon> GenerateWeaponAsync()
+        {
+            var domain = await _generatedWeaponLoot.RollNewRandomWeapon();
+            return domain;
+        }
+
+        public async Task<IEnumerable<GeneratedWeapon>> GenerateWeaponsAsync(int?[] weaponCategoryIdsPreferred, int?[] effectIdsPreferred)
+        {
+            throw new NotImplementedException();
         }
     }
 }

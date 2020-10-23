@@ -10,6 +10,7 @@ using NUnit.Framework;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Mantle.Loot.Contracts;
+using System;
 
 namespace Mantle.Tests.LootTests
 {
@@ -20,6 +21,7 @@ namespace Mantle.Tests.LootTests
         private Mock<IBaseMapper<Data.GeneratedWeapon, Domain.GeneratedWeapon>> _mockMapper;
         private Mock<IGeneratedWeaponRepository> _mockRepo;
         private Mock<ILogger<GeneratedWeaponLoot>> _mockLogger;
+        private Mock<IMantleDbContext> _mockDbContext;
 
         [SetUp]
         public void Setup()
@@ -27,6 +29,7 @@ namespace Mantle.Tests.LootTests
             _mockRepo = new Mock<IGeneratedWeaponRepository>();
             _mockLogger = new Mock<ILogger<GeneratedWeaponLoot>>();
             _mockMapper = new Mock<IBaseMapper<Data.GeneratedWeapon, Domain.GeneratedWeapon>>();
+            _mockDbContext = new Mock<IMantleDbContext>();
             _generatedWeaponLoot = new GeneratedWeaponLoot(_mockRepo.Object, _mockMapper.Object, _mockLogger.Object);
         }
 
@@ -46,6 +49,20 @@ namespace Mantle.Tests.LootTests
             var domain = await _generatedWeaponLoot.GetByIdAsync(inputValue);
 
             _mockRepo.Verify(f => f.GetByIdAsync(inputValue));
+        }
+
+        [Test]
+        public async Task InsertGeneratedWeapon_VerifyRepo_UtilizesInput()
+        {
+            var rand = new Random();
+            var data = new Data.GeneratedWeapon
+            {
+                BaseWeaponCategoryId = rand.Next(1, 37),
+                BaseWeaponEffectId = rand.Next(1, 39),
+            };
+            await _generatedWeaponLoot.InsertRecord(data);
+
+            _mockRepo.Verify(f => f.InsertRecordAsync(data));
         }
     }
 }

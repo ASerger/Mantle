@@ -40,5 +40,24 @@ namespace Mantle.Loot.Implementations
 
             return await _genWeaponMapper.MapDataToDomainAsync(data);
         }
+
+        public async Task<int> InsertRecord(Data.GeneratedWeapon dataGeneratedWeapon)
+        {
+            return await _generatedWeaponRepository.InsertRecordAsync(dataGeneratedWeapon);
+        }
+
+        public async Task<Domain.GeneratedWeapon> RollNewRandomWeapon()
+        {
+            // select relevant id's at random (at the moment only: base weapon category, base weapon effect)
+            var rand = new Random();
+            var data = new Data.GeneratedWeapon
+            {
+                BaseWeaponCategoryId = rand.Next(1, 37),
+                BaseWeaponEffectId = rand.Next(1, 39),
+            };
+
+            await InsertRecord(data);
+            return await _genWeaponMapper.MapDataToDomainAsync(data);
+        }
     }
 }
